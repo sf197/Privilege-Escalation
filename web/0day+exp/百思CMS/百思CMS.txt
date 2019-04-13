@@ -1,0 +1,8 @@
+百思cms
+默认的\bk20100216\随机的
+
+eWebEditor\admin\login.asp
+
+
+sUsername = "bs"
+sPassword = "8615386"

